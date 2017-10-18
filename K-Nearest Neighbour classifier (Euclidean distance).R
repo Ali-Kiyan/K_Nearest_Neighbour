@@ -22,3 +22,17 @@ for(i in 1:length)
     (occupancy_data_f$CO2[i]-co2)^2  
   )  
 }
+#sort by euclidean distance
+occupancy_data_f <- occupancy_data_f[order(occupancy_data_f$euclidean_distance),]
+#k for classification
+k <- 5
+#show k nearest neighbours which in this case I have used 5
+#basically you have only 5 first most similar ones
+occupancy_data_f[1:k,]
+Class1 <- sum(occupancy_data_f$Occupancy[1:k]==1)  
+if (Class1 > k/2)
+ {
+  print("The query point belongs to class 1");
+ }else {
+  print("The query point belongs to class 0");
+}
